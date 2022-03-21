@@ -21,8 +21,9 @@ public class Avocat extends Sprite {
         this.Y = Y;
         this.width = width;
         this.height = height;
-        setPosition(this.X, this.Y);
-        setSize(this.width, this.height);
+        this.setPosition(this.X, this.Y);
+        this.setSize(this.width, this.height);
+        this.setCenter(X ,Y );
 
     }
 
