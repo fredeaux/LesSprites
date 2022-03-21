@@ -63,18 +63,19 @@ public class MainGame extends ApplicationAdapter {
 
 		//Update
 		mouseX = Gdx.input.getX();
-		mouseY = Gdx.input.getY() - 64;
+		mouseY = 600 - Gdx.input.getY();
 
 		//System.out.println("mouse: " + mouseX + "   " + mouseY  );
 
+
 		if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT))
 		{
+			System.out.println("Clic !!!");
 			for(int j=0; j<listeSprites.size(); j++)
 			{
-				System.out.println("Dans la boucle !! " + (i++));
-				if(mouseX > listeSprites.get(j).getX() && mouseX < listeSprites.get(j).getX() + listeSprites.get(j).getWidth() && 600 - mouseY > listeSprites.get(j).getY() && 600 - mouseY < listeSprites.get(j).getY() + listeSprites.get(j).getWidth())
+				if(mouseX > listeSprites.get(j).X -55  && mouseX < listeSprites.get(j).X + 55 && mouseY > listeSprites.get(j).Y - 55 && mouseY < listeSprites.get(j).Y + 55)
 				{
-					System.out.println("Clic SUR UN SPRITE !! "+ listeSprites.get(i).texture + "  nb: ");
+					System.out.println("Clic sur:   "+ listeSprites.get(j).getTexture());
 				}
 			}
 
