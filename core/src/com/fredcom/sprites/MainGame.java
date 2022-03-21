@@ -71,9 +71,10 @@ public class MainGame extends ApplicationAdapter {
 		{
 			for(int j=0; j<listeSprites.size(); j++)
 			{
+				System.out.println("Dans la boucle !! " + (i++));
 				if(mouseX > listeSprites.get(j).getX() && mouseX < listeSprites.get(j).getX() + listeSprites.get(j).getWidth() && 600 - mouseY > listeSprites.get(j).getY() && 600 - mouseY < listeSprites.get(j).getY() + listeSprites.get(j).getWidth())
 				{
-					System.out.println("Clic SUR UN SPRITE !! "+ listeSprites.get(i).texture + "  nb: " + (i++));
+					System.out.println("Clic SUR UN SPRITE !! "+ listeSprites.get(i).texture + "  nb: ");
 				}
 			}
 
