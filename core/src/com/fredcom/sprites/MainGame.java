@@ -3,19 +3,13 @@ package com.fredcom.sprites;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class MainGame extends ApplicationAdapter {
 	SpriteBatch batch;
@@ -30,7 +24,8 @@ public class MainGame extends ApplicationAdapter {
 	ShapeRenderer sr;
 	ArrayList<Sprites> listeSprites;
 	BitmapFont font;
-	String text = "";
+	String texteAAfficher = "";
+	Texte affichageTexte;
 
 
 	int i = 0;
@@ -52,7 +47,8 @@ public class MainGame extends ApplicationAdapter {
 		rhubarbe = new Sprites("Rhubarbe", Assets.rhubarbe, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 - 128, 128, 128);
 		listeSprites = new ArrayList<>();
 		font = new BitmapFont();
-		font.getData().setScale(3f, 3f);
+		affichageTexte = new Texte(texteAAfficher, 50, 550);
+		affichageTexte.taille(2f, 2f);
 
 		listeSprites.add(avocat);
 		listeSprites.add(banane);
@@ -78,14 +74,14 @@ public class MainGame extends ApplicationAdapter {
 
 		if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT))
 		{
-			text = "";
+			texteAAfficher = "";
 
 			for(Sprites s: listeSprites)
 			{
 
 				if(mouseX > s.X -55  && mouseX < s.X + 55 && mouseY > s.Y - 55 && mouseY < s.Y + 55)
 				{
-					text = s.name;
+					texteAAfficher = s.name;
 				}
 
 			}
@@ -110,7 +106,7 @@ public class MainGame extends ApplicationAdapter {
 		orange.draw(batch);
 		pasteque.draw(batch);
 		rhubarbe.draw(batch);
-		font.draw(batch, text, 50,550);
+		affichageTexte.draw(batch, texteAAfficher, affichageTexte.X(), affichageTexte.Y());
 		batch.end();
 	}
 	
