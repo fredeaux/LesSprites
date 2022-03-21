@@ -71,11 +71,19 @@ public class MainGame extends ApplicationAdapter {
 		if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT))
 		{
 			System.out.println("Clic !!!");
-			for(int j=0; j<listeSprites.size(); j++)
+			/*for(int j=0; j<listeSprites.size(); j++)
 			{
 				if(mouseX > listeSprites.get(j).X -55  && mouseX < listeSprites.get(j).X + 55 && mouseY > listeSprites.get(j).Y - 55 && mouseY < listeSprites.get(j).Y + 55)
 				{
 					System.out.println("Clic sur:   "+ listeSprites.get(j).getTexture());
+				}
+			}*/
+
+			for(Sprites s: listeSprites)
+			{
+				if(mouseX > s.X -55  && mouseX < s.X + 55 && mouseY > s.Y - 55 && mouseY < s.Y + 55)
+				{
+					System.out.println("Clic sur:   "+ s.getTexture());
 				}
 			}
 
