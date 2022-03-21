@@ -13,7 +13,12 @@ public class MainGame extends ApplicationAdapter {
 	public static float GAME_WIDTH;
 	public static float GAME_HEIGHT;
 	Assets assets;
-	Avocat avocat;
+	Sprites avocat;
+	Sprites banane;
+	Sprites orange;
+	Sprites pasteque;
+	Sprites rhubarbe;
+
 	ShapeRenderer sr;
 	
 	@Override
@@ -22,22 +27,33 @@ public class MainGame extends ApplicationAdapter {
 		GAME_WIDTH = Gdx.graphics.getWidth();
 		GAME_HEIGHT = Gdx.graphics.getHeight();
 		assets = new Assets();
-		System.out.println("Largeur: " + (int)GAME_WIDTH/2 + " Hauteur: " + (int)GAME_HEIGHT/2);
-		avocat = new Avocat(new Texture("avocat.png"), (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2, 128, 128);
+		avocat = new Sprites(Assets.avocat, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2, 128, 128);
+		banane = new Sprites(Assets.banane, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 + 128, 128, 128);
+		orange = new Sprites(Assets.orange, (int)GAME_WIDTH / 2 - 128, (int)GAME_HEIGHT / 2, 128, 128);
+		pasteque = new Sprites(Assets.pasteque, (int)GAME_WIDTH / 2 + 128, (int)GAME_HEIGHT / 2, 128, 128);
+		rhubarbe = new Sprites(Assets.rhubarbe, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 - 128, 128, 128);
+
 		sr = new ShapeRenderer();
 		sr.setColor(Color.WHITE);
 	}
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(0, 0, 0, 1);
+		ScreenUtils.clear(0.5f, 0.5f, 0.5f, 1);
 		//Dessin de lignes
 		sr.begin(ShapeRenderer.ShapeType.Line);
 		sr.line(0, 300, 800, 300);
 		sr.line(400,0,400,600);
 		sr.end();
 		batch.begin();
+		batch.setColor(1,1,1,0.4f);
+		batch.draw(Assets.background, 0, 0);
+		batch.setColor(1,1,1,1);
 		avocat.draw(batch);
+		banane.draw(batch);
+		orange.draw(batch);
+		pasteque.draw(batch);
+		rhubarbe.draw(batch);
 		batch.end();
 	}
 	

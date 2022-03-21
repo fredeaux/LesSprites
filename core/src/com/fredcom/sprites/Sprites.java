@@ -3,7 +3,7 @@ package com.fredcom.sprites;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class Avocat extends Sprite {
+public class Sprites extends Sprite {
 
     Texture texture;
     int X;
@@ -12,7 +12,7 @@ public class Avocat extends Sprite {
     int height;
 
 
-    public Avocat(Texture texture, int X, int Y, int width, int height)
+    public Sprites(Texture texture, int X, int Y, int width, int height)
     {
         super(texture);
 
