@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
@@ -28,6 +29,10 @@ public class MainGame extends ApplicationAdapter {
 	Sprites rhubarbe;
 	ShapeRenderer sr;
 	ArrayList<Sprites> listeSprites;
+	BitmapFont font;
+	String text = "";
+
+
 	int i = 0;
 
 	int mouseX;
@@ -40,12 +45,14 @@ public class MainGame extends ApplicationAdapter {
 		GAME_WIDTH = Gdx.graphics.getWidth();
 		GAME_HEIGHT = Gdx.graphics.getHeight();
 		assets = new Assets();
-		avocat = new Sprites(Assets.avocat, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2, 128, 128);
-		banane = new Sprites(Assets.banane, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 + 128, 128, 128);
-		orange = new Sprites(Assets.orange, (int)GAME_WIDTH / 2 - 128, (int)GAME_HEIGHT / 2, 128, 128);
-		pasteque = new Sprites(Assets.pasteque, (int)GAME_WIDTH / 2 + 128, (int)GAME_HEIGHT / 2, 128, 128);
-		rhubarbe = new Sprites(Assets.rhubarbe, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 - 128, 128, 128);
+		avocat = new Sprites("Avocat", Assets.avocat, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2, 128, 128);
+		banane = new Sprites("Banane", Assets.banane, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 + 128, 128, 128);
+		orange = new Sprites("Orange", Assets.orange, (int)GAME_WIDTH / 2 - 128, (int)GAME_HEIGHT / 2, 128, 128);
+		pasteque = new Sprites("Pasteque", Assets.pasteque, (int)GAME_WIDTH / 2 + 128, (int)GAME_HEIGHT / 2, 128, 128);
+		rhubarbe = new Sprites("Rhubarbe", Assets.rhubarbe, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 - 128, 128, 128);
 		listeSprites = new ArrayList<>();
+		font = new BitmapFont();
+		font.getData().setScale(3f, 3f);
 
 		listeSprites.add(avocat);
 		listeSprites.add(banane);
@@ -58,6 +65,8 @@ public class MainGame extends ApplicationAdapter {
 
 	}
 
+
+
 	@Override
 	public void render () {
 
@@ -65,26 +74,20 @@ public class MainGame extends ApplicationAdapter {
 		mouseX = Gdx.input.getX();
 		mouseY = 600 - Gdx.input.getY();
 
-		//System.out.println("mouse: " + mouseX + "   " + mouseY  );
 
 
 		if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT))
 		{
-			System.out.println("Clic !!!");
-			/*for(int j=0; j<listeSprites.size(); j++)
-			{
-				if(mouseX > listeSprites.get(j).X -55  && mouseX < listeSprites.get(j).X + 55 && mouseY > listeSprites.get(j).Y - 55 && mouseY < listeSprites.get(j).Y + 55)
-				{
-					System.out.println("Clic sur:   "+ listeSprites.get(j).getTexture());
-				}
-			}*/
+			text = "";
 
 			for(Sprites s: listeSprites)
 			{
+
 				if(mouseX > s.X -55  && mouseX < s.X + 55 && mouseY > s.Y - 55 && mouseY < s.Y + 55)
 				{
-					System.out.println("Clic sur:   "+ s.getTexture());
+					text = s.name;
 				}
+
 			}
 
 		}
@@ -107,6 +110,7 @@ public class MainGame extends ApplicationAdapter {
 		orange.draw(batch);
 		pasteque.draw(batch);
 		rhubarbe.draw(batch);
+		font.draw(batch, text, 50,550);
 		batch.end();
 	}
 	
@@ -114,6 +118,6 @@ public class MainGame extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		Assets.am.dispose();
-
+		font.dispose();
 	}
 }
