@@ -29,6 +29,12 @@ public class MainGame extends ApplicationAdapter {
 	CentreRotate spriteRotate;
 	int distance = 180;
 	int deplaceSprite = 5;
+	double angle;
+
+
+
+
+
 
 
 	int i = 0;
@@ -63,6 +69,15 @@ public class MainGame extends ApplicationAdapter {
 
 		sr = new ShapeRenderer();
 		sr.setColor(Color.WHITE);
+		int key = 0;
+
+
+
+
+
+
+
+
 
 	}
 
@@ -97,7 +112,15 @@ public class MainGame extends ApplicationAdapter {
 
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
 		{
-			listeSprites.get(memoSpriteClique).rotation();
+			angle = 2;
+
+			if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT))
+			{
+				angle = 0.5;
+			}
+
+			listeSprites.get(memoSpriteClique).rotation(angle);
+
 		}
 
 		if(Gdx.input.isKeyPressed(Input.Keys.NUMPAD_ADD))
@@ -127,7 +150,17 @@ public class MainGame extends ApplicationAdapter {
 
 		if(Gdx.input.isKeyPressed(Input.Keys.NUMPAD_SUBTRACT))
 		{
-			distance-=5;
+
+			if(Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT))
+			{
+				deplaceSprite = 1;
+			}
+			else
+			{
+				deplaceSprite = 5;
+			}
+
+
 			i = 0;
 			for(Sprites sp: listeSprites)
 			{
@@ -151,6 +184,10 @@ public class MainGame extends ApplicationAdapter {
 
 
 
+
+
+
+
 		//Draw
 		ScreenUtils.clear(0.5f, 0.5f, 0.5f, 1);
 		//Dessin de lignes
@@ -170,6 +207,10 @@ public class MainGame extends ApplicationAdapter {
 		affichageTexte.draw(batch, texteAAfficher, affichageTexte.X(), affichageTexte.Y());
 		batch.end();
 	}
+
+
+
+
 	
 	@Override
 	public void dispose () {

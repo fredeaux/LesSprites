@@ -13,7 +13,7 @@ public class Sprites extends Sprite {
     int Y;
     int width;
     int height;
-    double angle = 0;
+    double angle;
 
     String name;
 
@@ -39,13 +39,13 @@ public class Sprites extends Sprite {
     }
 
 
-    public void rotation()
+    public void rotation(double inputAngle)
     {
 
         Point pSprite = new Point(X, Y);
         Point center = new Point(400-64, 300-64);
         double xM, yM, x, y;
-        angle = 180 * Gdx.graphics.getDeltaTime();
+        angle = inputAngle;
 
 
         angle *= Math.PI / 180;
