@@ -192,8 +192,18 @@ public class MainGame extends ApplicationAdapter {
 		ScreenUtils.clear(0.5f, 0.5f, 0.5f, 1);
 		//Dessin de lignes
 		sr.begin(ShapeRenderer.ShapeType.Line);
+		sr.line(0,100,800,100);
+		sr.line(0,200,800,200);
 		sr.line(0, 300, 800, 300);
+		sr.line(0,400,800,400);
+		sr.line(0,500,800,500);
 		sr.line(400,0,400,600);
+		sr.line(100,0,100,600);
+		sr.line(200,0,200,600);
+		sr.line(300,0,300,600);
+		sr.line(500,0,500,600);
+		sr.line(600,0,600,600);
+		sr.line(700,0,700,600);
 		sr.end();
 		batch.begin();
 		batch.setColor(1,1,1,0.4f);
