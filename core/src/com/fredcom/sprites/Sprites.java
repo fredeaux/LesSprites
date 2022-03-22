@@ -29,8 +29,16 @@ public class Sprites extends Sprite {
         this.height = height;
         this.setPosition(this.X, this.Y);
         this.setSize(this.width, this.height);
+        this.setOriginCenter();
         this.setCenter(X ,Y );
         this.name = name;
+
+    }
+
+
+    public void rotation()
+    {
+
 
     }
 

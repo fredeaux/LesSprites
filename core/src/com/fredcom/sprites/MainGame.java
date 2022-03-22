@@ -26,6 +26,7 @@ public class MainGame extends ApplicationAdapter {
 	BitmapFont font;
 	String texteAAfficher = "";
 	Texte affichageTexte;
+	CentreRotate spriteRotate;
 
 
 	int i = 0;
@@ -49,6 +50,7 @@ public class MainGame extends ApplicationAdapter {
 		font = new BitmapFont();
 		affichageTexte = new Texte(texteAAfficher, 50, 550);
 		affichageTexte.taille(2f, 2f);
+		spriteRotate = new CentreRotate(Assets.rhubarbe, 400, 300);
 
 		listeSprites.add(avocat);
 		listeSprites.add(banane);
@@ -88,6 +90,11 @@ public class MainGame extends ApplicationAdapter {
 
 		}
 
+		if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
+		{
+			spriteRotate.rotate();
+		}
+
 
 
 		//Draw
@@ -106,6 +113,7 @@ public class MainGame extends ApplicationAdapter {
 		orange.draw(batch);
 		pasteque.draw(batch);
 		rhubarbe.draw(batch);
+		//spriteRotate.draw(batch);
 		affichageTexte.draw(batch, texteAAfficher, affichageTexte.X(), affichageTexte.Y());
 		batch.end();
 	}
