@@ -27,9 +27,12 @@ public class MainGame extends ApplicationAdapter {
 	String texteAAfficher = "";
 	Texte affichageTexte;
 	CentreRotate spriteRotate;
+	int distance = 180;
+	int deplaceSprite = 5;
 
 
 	int i = 0;
+	int memoSpriteClique = 0;
 
 	int mouseX;
 	int mouseY;
@@ -42,10 +45,10 @@ public class MainGame extends ApplicationAdapter {
 		GAME_HEIGHT = Gdx.graphics.getHeight();
 		assets = new Assets();
 		avocat = new Sprites("Avocat", Assets.avocat, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2, 128, 128);
-		banane = new Sprites("Banane", Assets.banane, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 + 128, 128, 128);
-		orange = new Sprites("Orange", Assets.orange, (int)GAME_WIDTH / 2 - 128, (int)GAME_HEIGHT / 2, 128, 128);
-		pasteque = new Sprites("Pasteque", Assets.pasteque, (int)GAME_WIDTH / 2 + 128, (int)GAME_HEIGHT / 2, 128, 128);
-		rhubarbe = new Sprites("Rhubarbe", Assets.rhubarbe, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 - 128, 128, 128);
+		banane = new Sprites("Banane", Assets.banane, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 + distance, 128, 128);
+		orange = new Sprites("Orange", Assets.orange, (int)GAME_WIDTH / 2 - distance, (int)GAME_HEIGHT / 2, 128, 128);
+		pasteque = new Sprites("Pasteque", Assets.pasteque, (int)GAME_WIDTH / 2 + distance, (int)GAME_HEIGHT / 2, 128, 128);
+		rhubarbe = new Sprites("Rhubarbe", Assets.rhubarbe, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 - distance, 128, 128);
 		listeSprites = new ArrayList<>();
 		font = new BitmapFont();
 		affichageTexte = new Texte(texteAAfficher, 50, 550);
@@ -77,22 +80,73 @@ public class MainGame extends ApplicationAdapter {
 		if(Gdx.input.isButtonJustPressed(Input.Buttons.LEFT))
 		{
 			texteAAfficher = "";
+			memoSpriteClique = i =0;
 
 			for(Sprites s: listeSprites)
 			{
 
-				if(mouseX > s.X -55  && mouseX < s.X + 55 && mouseY > s.Y - 55 && mouseY < s.Y + 55)
+				if(mouseX > s.X  && mouseX < s.X + 128 && mouseY > s.Y  && mouseY < s.Y + 128)
 				{
+					memoSpriteClique = i;
 					texteAAfficher = s.name;
 				}
-
+				i++;
 			}
 
 		}
 
 		if(Gdx.input.isKeyPressed(Input.Keys.SPACE))
 		{
-			spriteRotate.rotate();
+			listeSprites.get(memoSpriteClique).rotation();
+		}
+
+		if(Gdx.input.isKeyPressed(Input.Keys.NUMPAD_ADD))
+		{
+
+			i = 0;
+
+			for(Sprites sp: listeSprites)
+			{
+
+				switch (i)
+				{
+					case 1: sp.setPosition(banane.X, banane.Y += deplaceSprite);
+					break;
+					case 2: sp.setPosition(orange.X -= deplaceSprite, orange.Y);
+					break;
+					case 3 : sp.setPosition(pasteque.X += deplaceSprite, pasteque.Y);
+					break;
+					case 4: sp.setPosition(rhubarbe.X, rhubarbe.Y -= deplaceSprite);
+
+				}
+
+				i++;
+
+			}
+		}
+
+		if(Gdx.input.isKeyPressed(Input.Keys.NUMPAD_SUBTRACT))
+		{
+			distance-=5;
+			i = 0;
+			for(Sprites sp: listeSprites)
+			{
+
+				switch (i)
+				{
+					case 1: sp.setPosition(banane.X, banane.Y -= deplaceSprite);
+						break;
+					case 2: sp.setPosition(orange.X += deplaceSprite, orange.Y);
+						break;
+					case 3 : sp.setPosition(pasteque.X -= deplaceSprite, pasteque.Y);
+						break;
+					case 4: sp.setPosition(rhubarbe.X, rhubarbe.Y += deplaceSprite);
+
+				}
+
+				i++;
+
+			}
 		}
 
 
@@ -113,7 +167,6 @@ public class MainGame extends ApplicationAdapter {
 		orange.draw(batch);
 		pasteque.draw(batch);
 		rhubarbe.draw(batch);
-		//spriteRotate.draw(batch);
 		affichageTexte.draw(batch, texteAAfficher, affichageTexte.X(), affichageTexte.Y());
 		batch.end();
 	}
