@@ -54,16 +54,9 @@ public class Sprites extends Sprite {
         x = xM * Math.cos (angle) + yM * Math.sin (angle) + center.x;
         y = - xM * Math.sin (angle) + yM * Math.cos (angle) + center.y;
 
-
-
-
         X = (int)Math.round (x);
         Y = (int)Math.round (y);
         this.setPosition(X, Y);
 
-
-
     }
-
-
 }
