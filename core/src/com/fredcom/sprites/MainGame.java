@@ -30,6 +30,7 @@ public class MainGame extends ApplicationAdapter {
 	int distance = 180;
 	int deplaceSprite = 5;
 	double angle;
+	int lh = 128;
 
 
 
@@ -50,11 +51,11 @@ public class MainGame extends ApplicationAdapter {
 		GAME_WIDTH = Gdx.graphics.getWidth();
 		GAME_HEIGHT = Gdx.graphics.getHeight();
 		assets = new Assets();
-		avocat = new Sprites("Avocat", Assets.avocat, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2, 128, 128);
-		banane = new Sprites("Banane", Assets.banane, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 + distance, 128, 128);
-		orange = new Sprites("Orange", Assets.orange, (int)GAME_WIDTH / 2 - distance, (int)GAME_HEIGHT / 2, 128, 128);
-		pasteque = new Sprites("Pasteque", Assets.pasteque, (int)GAME_WIDTH / 2 + distance, (int)GAME_HEIGHT / 2, 128, 128);
-		rhubarbe = new Sprites("Rhubarbe", Assets.rhubarbe, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 - distance, 128, 128);
+		avocat = new Sprites("Avocat", Assets.avocat, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2, lh, lh);
+		banane = new Sprites("Banane", Assets.banane, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 + distance, lh, lh);
+		orange = new Sprites("Orange", Assets.orange, (int)GAME_WIDTH / 2 - distance, (int)GAME_HEIGHT / 2, lh, lh);
+		pasteque = new Sprites("Pasteque", Assets.pasteque, (int)GAME_WIDTH / 2 + distance, (int)GAME_HEIGHT / 2, lh, lh);
+		rhubarbe = new Sprites("Rhubarbe", Assets.rhubarbe, (int)GAME_WIDTH / 2, (int)GAME_HEIGHT / 2 - distance, lh, lh);
 		listeSprites = new ArrayList<>();
 		font = new BitmapFont();
 		affichageTexte = new Texte(texteAAfficher, 50, 550);
